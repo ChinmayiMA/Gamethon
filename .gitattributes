@@ -169,3 +169,11 @@ Packages/packages-lock.json linguist-generated
 
 # Exceptions for .asset files such as lightning pre-baking
 LightingData.asset     binary
+
+# Existing images are stored as ordinary Git blobs; preserve that storage.
+Assets/BengaluruCyberpunk/SignTextures/*.png -filter -diff -merge -text
+Assets/TutorialInfo/Icons/URP.png -filter -diff -merge -text
+
+# Preserve the CRLF bytes already stored for these two existing scripts.
+Assets/Editor/BengaluruCyberpunkGenerator.cs -text
+Assets/Scripts/CityRuntime.cs -text
