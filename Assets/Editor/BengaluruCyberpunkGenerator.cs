@@ -544,8 +544,11 @@ public class BengaluruCyberpunkGenerator : EditorWindow
         root.SetParent(tSigns, false); root.position = center; root.rotation = rot;
         root.gameObject.isStatic = !flicker;
 
-        var panel = Prim(PrimitiveType.Cube, root, "Panel", center, new Vector3(w, h, 0.15f), SignMat(tex, neon), false, !flicker);
-        panel.transform.rotation = rot;
+        var body = Prim(PrimitiveType.Cube, root, "PanelBody", center, new Vector3(w, h, 0.14f), Lit(new Color(0.02f, 0.02f, 0.03f), 0.3f), false, !flicker);
+        body.transform.rotation = rot;
+        Material sm = SignMat(tex, neon);
+        PrimR(PrimitiveType.Quad, root, "Front", center + normal * 0.075f, rot, new Vector3(-w, h, 1f), sm, false, !flicker);
+PrimR(PrimitiveType.Quad, root, "Back", center - normal * 0.075f, rot * Quaternion.Euler(0, 180, 0), new Vector3(-w, h, 1f), sm, false, !flicker);
         if (Random.value < 0.35f)    // dim back-lit plate behind the lettering
         {
             var plate = Prim(PrimitiveType.Cube, root, "Plate", center + normal * -0.06f, new Vector3(w + 0.3f, h + 0.3f, 0.05f), Emissive(neon, 0.5f), false, !flicker);
